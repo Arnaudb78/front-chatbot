@@ -9,6 +9,7 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { AppProvider, type Navigation } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { useDemoRouter } from '@toolpad/core/internal';
+import SearchForm from '@/components/searchForm';
 
 const NAVIGATION: Navigation = [
   {
@@ -41,15 +42,16 @@ function PageContent({ pathname }: { pathname: string }) {
     return (
       <Box
       sx={{
-        py: 4,
+        py: 20,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
+        gap: 10,
       }}
     >
-      <Typography>Dashboard</Typography>
-
+      <Typography sx={{fontSize: 40}}>Discover the true potential of cryptocurrencies.</Typography>
+      <SearchForm />
     </Box>
     );
   }
@@ -64,7 +66,6 @@ function PageContent({ pathname }: { pathname: string }) {
       }}
     >
       <Typography>Dashboard content for {pathname}</Typography>
-
     </Box>
   );
 }
