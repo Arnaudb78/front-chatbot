@@ -37,6 +37,22 @@ const theme = createTheme({
 });
 
 function PageContent({ pathname }: { pathname: string }) {
+  if (pathname === "/dashboard") {
+    return (
+      <Box
+      sx={{
+        py: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <Typography>Dashboard</Typography>
+
+    </Box>
+    );
+  }
   return (
     <Box
       sx={{
@@ -48,6 +64,7 @@ function PageContent({ pathname }: { pathname: string }) {
       }}
     >
       <Typography>Dashboard content for {pathname}</Typography>
+
     </Box>
   );
 }
