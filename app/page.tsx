@@ -1,87 +1,79 @@
 "use client";
-import { Box, Typography } from "@mui/material";
-import Form from "@/components/form";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import { useState, useEffect } from 'react';
 
-const FetchCryptoData = () => {
-  const [cryptoData, setCryptoData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { createTheme } from '@mui/material/styles';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import { AppProvider, type Navigation } from '@toolpad/core/AppProvider';
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import { useDemoRouter } from '@toolpad/core/internal';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/crypto', {
-          method: "GET",
-          credentials: "include",
-        });
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération des données');
-        }
-        const data = await response.json();
-        console.log(data);
-        setCryptoData(data);
-      } catch (error) {
-        setError('Impossible de récupérer les données');
-      } finally {
-        setLoading(false);
-      }
-    };
+const NAVIGATION: Navigation = [
+  {
+    segment: 'dashboard',
+    title: 'Dashboard',
+    icon: <DashboardIcon />,
+  },
+  {
+    segment: 'cryptos',
+    title: 'Cryptos',
+    icon: <MonetizationOnIcon />,
+  },
+];
 
-    fetchData();
-  }, []);
+const theme = createTheme({
+  colorSchemes: { light: true, dark: true },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 600,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 
-  if (loading) return <Typography>Chargement...</Typography>;
-  if (error) return <Typography color="error">{error}</Typography>;
-
+function PageContent({ pathname }: { pathname: string }) {
   return (
-    <Box>
-      <Typography variant="h6">Liste des Cryptos :</Typography>
-      {cryptoData && cryptoData.length > 0 ? (
-        <ul>
-          {cryptoData.map((crypto, index) => (
-            <li key={index}>{crypto.name}</li>
-          ))}
-        </ul>
-      ) : (
-        <Typography>Aucune donnée disponible</Typography>
-      )}
+    <Box
+      sx={{
+        py: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <Typography>Dashboard content for {pathname}</Typography>
     </Box>
   );
-};
+}
 
-export default function Home() {
+interface Props {
+  window?: () => Window;
+}
+
+export default function DashboardLayoutBranding(props: Props) {
+
+  const router = useDemoRouter('/dashboard');
+
   return (
-    <>
-      <Navbar />
-      <Box 
-        sx={{
-          display: 'flex', 
-          flexDirection: 'column', 
-          justifyContent: 'space-between', 
-          minHeight: '100vh',               
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flex: 1, 
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant="h4" gutterBottom className="mt-8">
-            Découvrez les prévisions du marché crypto et prenez une longueur d'avance !
-          </Typography>
-          <Form />
-          <FetchCryptoData /> {/* Intégration de la fonctionnalité FetchCryptoData */}
-        </Box>
-        <Footer />
-      </Box>
-    </>
+    <AppProvider
+      navigation={NAVIGATION}
+      branding={{
+        logo: <img src="/logo/logo.png" alt="CryptoBot logo" />,
+        title: 'CryptoBot',
+        homeUrl: '/toolpad/core/introduction',
+      }}
+      router={router}
+      theme={theme}
+    >
+      <DashboardLayout>
+        <PageContent pathname={router.pathname} />
+      </DashboardLayout>
+    </AppProvider>
   );
 }
