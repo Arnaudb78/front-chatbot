@@ -1,0 +1,23 @@
+Index: app/page.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\"use client\";\r\n\r\nimport * as React from 'react';\r\nimport Box from '@mui/material/Box';\r\nimport Typography from '@mui/material/Typography';\r\nimport { createTheme } from '@mui/material/styles';\r\nimport DashboardIcon from '@mui/icons-material/Dashboard';\r\nimport MonetizationOnIcon from '@mui/icons-material/MonetizationOn';\r\nimport { AppProvider, type Navigation } from '@toolpad/core/AppProvider';\r\nimport { DashboardLayout } from '@toolpad/core/DashboardLayout';\r\nimport { useDemoRouter } from '@toolpad/core/internal';\r\n\r\nconst NAVIGATION: Navigation = [\r\n  {\r\n    segment: 'dashboard',\r\n    title: 'Dashboard',\r\n    icon: <DashboardIcon />,\r\n  },\r\n  {\r\n    segment: 'cryptos',\r\n    title: 'Cryptos',\r\n    icon: <MonetizationOnIcon />,\r\n  },\r\n];\r\n\r\nconst theme = createTheme({\r\n  colorSchemes: { light: true, dark: true },\r\n  breakpoints: {\r\n    values: {\r\n      xs: 0,\r\n      sm: 600,\r\n      md: 600,\r\n      lg: 1200,\r\n      xl: 1536,\r\n    },\r\n  },\r\n});\r\n\r\nfunction PageContent({ pathname }: { pathname: string }) {\r\n  return (\r\n    <Box\r\n      sx={{\r\n        py: 4,\r\n        display: 'flex',\r\n        flexDirection: 'column',\r\n        alignItems: 'center',\r\n        textAlign: 'center',\r\n      }}\r\n    >\r\n      <Typography>Dashboard content for {pathname}</Typography>\r\n    </Box>\r\n  );\r\n}\r\n\r\ninterface Props {\r\n  window?: () => Window;\r\n}\r\n\r\nexport default function DashboardLayoutBranding(props: Props) {\r\n\r\n  const router = useDemoRouter('/dashboard');\r\n\r\n  return (\r\n    <AppProvider\r\n      navigation={NAVIGATION}\r\n      branding={{\r\n        logo: <img src=\"/logo/logo.png\" alt=\"CryptoBot logo\" />,\r\n        title: 'CryptoBot',\r\n        homeUrl: '/toolpad/core/introduction',\r\n      }}\r\n      router={router}\r\n      theme={theme}\r\n    >\r\n      <DashboardLayout>\r\n        <PageContent pathname={router.pathname} />\r\n      </DashboardLayout>\r\n    </AppProvider>\r\n  );\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/page.tsx b/app/page.tsx
+--- a/app/page.tsx	(revision 14925bdad425e49fc4b8a7181503feae2d5f7677)
++++ b/app/page.tsx	(date 1738325357569)
+@@ -52,11 +52,8 @@
+   );
+ }
+ 
+-interface Props {
+-  window?: () => Window;
+-}
+ 
+-export default function DashboardLayoutBranding(props: Props) {
++export default function DashboardLayoutBranding() {
+ 
+   const router = useDemoRouter('/dashboard');
+ 
