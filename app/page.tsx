@@ -19,7 +19,6 @@ import CustomizedDataGrid from '../components/CustomizedDataGrid';
 import CustomizedTreeView from '../components/CustomizedTreeView';
 import ChartUserByCountry from '../components/ChartUserByCountry';
 import {Copyright} from "@mui/icons-material";
-=======
 import SearchForm from '@/components/searchForm';
 
 
