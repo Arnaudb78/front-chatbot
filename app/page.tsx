@@ -19,6 +19,8 @@ import CustomizedDataGrid from '../components/CustomizedDataGrid';
 import CustomizedTreeView from '../components/CustomizedTreeView';
 import ChartUserByCountry from '../components/ChartUserByCountry';
 import {Copyright} from "@mui/icons-material";
+=======
+import SearchForm from '@/components/searchForm';
 
 
 
@@ -159,6 +161,36 @@ function PageContent({ pathname }: { pathname: string }) {
 
         </Box>
     );
+  if (pathname === "/dashboard") {
+    return (
+      <Box
+      sx={{
+        py: 20,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        gap: 10,
+      }}
+    >
+      <Typography sx={{fontSize: 40}}>Discover the true potential of cryptocurrencies.</Typography>
+      <SearchForm />
+    </Box>
+    );
+  }
+  return (
+    <Box
+      sx={{
+        py: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <Typography>Dashboard content for {pathname}</Typography>
+    </Box>
+  );
 }
 
 interface Props {
