@@ -59,7 +59,7 @@ const data: StatCardProps[] = [
 const NAVIGATION: Navigation = [
   {
     segment: 'dashboard',
-    title: 'Dashboard',
+    title: 'Search',
     icon: <DashboardIcon />,
   },
   {
@@ -83,83 +83,6 @@ const theme = createTheme({
 });
 
 function PageContent({ pathname }: { pathname: string }) {
-    if (pathname === "/dashboard") {
-        return (
-            <Box
-                sx={{
-                    px: 2,
-                    py: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'left',
-                }}
-            >
-                <Breadcrumbs aria-label="breadcrumb">
-                    <Link underline="hover" color="inherit" href="/">
-                        CryptoBot
-                    </Link>
-                    <Typography sx={{color: 'text.primary'}}>Accueil</Typography>
-                </Breadcrumbs>
-
-                <Box sx={{px: 2, py: 2, width: '100%', maxWidth: { sm: '100%', md: '1700px' } }}>
-                    {/* cards */}
-                    <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-                        Tableau de bord
-                    </Typography>
-                    <Grid
-                        container
-                        spacing={2}
-                        columns={12}
-                        sx={{ mb: (theme: any) => theme.spacing(2) }}
-                    >
-                        {data.map((card, index) => (
-                            <Grid key={index} size={{ xs: 12, sm: 6, lg: 3 }}>
-                                <StatCard {...card} />
-                            </Grid>
-                        ))}
-                        <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
-                            <HighlightedCard />
-                        </Grid>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <SessionsChart />
-                        </Grid>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <PageViewsBarChart />
-                        </Grid>
-                    </Grid>
-                    <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
-                        Details
-                    </Typography>
-                    <Grid container spacing={2} columns={12}>
-                        <Grid size={{ xs: 12, lg: 9 }}>
-                            <CustomizedDataGrid />
-                        </Grid>
-                        <Grid size={{ xs: 12, lg: 3 }}>
-                            <Stack gap={2} direction={{ xs: 'column', sm: 'row', lg: 'column' }}>
-                                <CustomizedTreeView />
-                                <ChartUserByCountry />
-                            </Stack>
-                        </Grid>
-                    </Grid>
-                    <Copyright sx={{ my: 4 }} />
-                </Box>
-            </Box>
-        );
-    }
-    return (
-        <Box
-            sx={{
-                py: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
-            }}
-        >
-            <Typography>Dashboard content for {pathname}</Typography>
-
-        </Box>
-    );
   if (pathname === "/dashboard") {
     return (
       <Box
