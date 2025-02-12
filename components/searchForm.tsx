@@ -14,7 +14,6 @@ export default function SearchForm() {
         try {
             const response = await fetch(`http://localhost:3000/crypto/api/openai/${search}`);
             const data = await response.json();
-            console.log(data);
 
             if (data.message && data.message.content) {
                 setResponseApi(data.message.content);
